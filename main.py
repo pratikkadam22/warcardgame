@@ -28,7 +28,7 @@ def play_war(deck):
     b_cards = deck[int(len(deck)/2):]
     a_stash = []
     b_stash = []
-
+    print("\na_cards: %s, a_stash: %s, b_cards: %s, b_stash: %s" % (a_cards, a_stash, b_cards, b_stash))
     round = 1
     while a_cards and b_cards:
         # by using pop, we're playing from the end forward
@@ -36,13 +36,18 @@ def play_war(deck):
         b_card = b_cards.pop()
 
         if a_card == b_card:
-            a_stash.extend([a_card]+a_cards[-3:])
-            a_cards = a_cards[:-3]
-            a_cards.append(a_stash.pop())
-
-            b_stash.extend([b_card]+b_cards[-3:])
-            b_cards = b_cards[:-3]
-            b_cards.append(b_stash.pop())
+            if len(a_cards) > 0 and len(b_cards) > 0:
+                a_stash.extend([a_card]+[a_cards.pop()])
+                #a_card = a_cards.pop()
+                #a_cards.append(a_stash.pop())
+                b_stash.extend([b_card]+[b_cards.pop()])
+                #b_card = b_cards.pop()
+                #b_cards.append(b_stash.pop())
+                print("\n-----------------IT'S A WAR!!!!!!!-----------------")
+                print("\na_cards: %s, a_stash: %s, b_cards: %s, b_stash: %s" % (a_cards, a_stash, b_cards, b_stash))
+                continue
+            else:
+                continue
         elif a_card > b_card:
             # ordering of a_stash and b_stash is undefined by game rules
             a_cards = [a_card, b_card] + a_stash + b_stash + a_cards
@@ -54,9 +59,16 @@ def play_war(deck):
             a_stash = []
             b_stash = []
 
-        print("round %s: a_cards: %s, a_stash %s, b_cards %s, b_stash %s" %
+        print("\na_cards: %s, a_stash: %s, b_cards: %s, b_stash: %s" % (a_cards, a_stash, b_cards, b_stash))
+
+        print("After round %s: a_cards: %s, a_stash %s, b_cards %s, b_stash %s" %
            (round, len(a_cards), len(a_stash), len(b_cards), len(b_stash)))
         round += 1
+
+    if(len(a_cards) > len(b_cards)):
+        print("A_cards wins!!!")
+    else:
+        print("B_cards wins!!!")
 
 
 if __name__ == "__main__":
