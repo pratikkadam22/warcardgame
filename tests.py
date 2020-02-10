@@ -1,9 +1,34 @@
-from main import generate_deck
+from io import StringIO
+import unittest
+from unittest import TestCase
+from unittest.mock import patch
+from war_main import generate_deck, play_war
 
-def test_deckgeneration():
-    deck = generate_deck()
-    assert len(deck) == 52, "Should be 52"
+class TestWar(TestCase):
+    def test_deckgeneration(self):
+        deck = generate_deck()
+        self.assertEqual(len(deck), 52, "Should be 52")
 
-if __name__ == "__main__":
-    test_deckgeneration()
-    print("Everything passed")
+    def test_simplebattle(self):
+        deck = [{'A':14},{'K':13}]
+        deck.extend([{3:3},{3:3}])
+        with patch('sys.stdout', new = StringIO()) as output_text:
+            play_war(deck)
+            self.assertIn("A_cards wins!!!", output_text.getvalue())
+
+    def test_startwar(self):
+        deck = [{3:3}, {4:4}, {2:2}]
+        deck.extend([{'A':14}, {'K':13}, {2:2}])
+        with patch('sys.stdout', new = StringIO()) as output_text:
+            play_war(deck)
+            self.assertIn("IT'S A WAR", output_text.getvalue())
+            self.assertIn("B_cards wins!!!", output_text.getvalue())
+    
+    def test_bothemptysets(self):
+        deck = []
+        with patch('sys.stdout', new = StringIO()) as output_text:
+            play_war(deck)
+            self.assertIn("Both the set of cards are empty!", output_text.getvalue())
+
+if __name__ == '__main__':
+    unittest.main()
