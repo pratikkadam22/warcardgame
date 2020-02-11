@@ -1,7 +1,7 @@
 # War Card Game
 
 ### Rules for the game:-
-s
+
 1. A deck of randomized 52 cards is distributed between two users equally (26 each).
 
 2. Each player plays a card. Higher card wins. Winner takes both cards and add them to the deck.
