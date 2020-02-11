@@ -1,7 +1,7 @@
 # War Card Game
 
 ### Rules for the game:-
-
+s
 1. A deck of randomized 52 cards is distributed between two users equally (26 each).
 
 2. Each player plays a card. Higher card wins. Winner takes both cards and add them to the deck.
@@ -22,7 +22,7 @@
 ### Assumptions
 
  1) The game is played by two players
- 2) Suits are ignored
+ 2) The order of value of the suits is ignored
  3) The deck of 52 cards is actually made up of 13 unique cards repeated 4 times
  4) The Ace which is the dictionary with the key 'A', has the highest value
  5) When a player wins a battle, the cards won are added to the deck (beginning of the list)
@@ -31,7 +31,7 @@
 ### Future work
  1) The game can be expanded to include more than 2 players
  2) If there are 3 players, deal out 17 cards each. If there are 4 players, deal out 13 cards each
- 3) The suits can be taken into account in the following order: Spades > Hearts > Diamonds > Clubs
+ 3) The suits can be taken into account in the following order of value: Spades > Hearts > Diamonds > Clubs
  4) A major expansion would be to deploy this on a GUI. This interface will just allow the user to
     start the game simulation. The actual card images can be read using OCR, making the GUI even better.
 
